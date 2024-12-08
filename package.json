@@ -1,12 +1,13 @@
 {
-  "name": "main-microservice",
+  "name": "youtube-sync",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
+    "start": "node server.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
-  "author": "",
+  "author": "Priyansu",
   "license": "ISC",
   "description": "",
   "dependencies": {

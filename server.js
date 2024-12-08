@@ -7,20 +7,44 @@ const { v4: uuidv4 } = require('uuid');
 const app = express();
 const server = http.createServer(app);
 
+const allowedOrigins = [
+  "http://localhost:3000",
+  "https://youtubeSyncc.vercel.app" // You'll update this with your actual Vercel URL
+];
+
+
 app.use(express.json());
+
 app.use(cors({
-  origin: "http://localhost:3000",
+  origin: function(origin, callback) {
+    if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   methods: ["GET", "POST"],
+  credentials: true
 }));
 
 const io = socketIo(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: function(origin, callback) {
+      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
     methods: ["GET", "POST"],
+    credentials: true,
+    transports: ['websocket', 'polling']
   },
+  pingTimeout: 60000,
+  pingInterval: 25000
 });
 
-const PORT = process.env.PORT || 4000;
+
 const rooms = new Map();
 
 const generateRoomId = () => {
@@ -29,10 +53,10 @@ const generateRoomId = () => {
 
 app.post('/create-room', (req, res) => {
   const roomId = generateRoomId();
-  console.log("thank you for creating a room and your roomId is here: : ", roomId);
+  // console.log("thank you for creating a room and your roomId is here: : ", roomId);
 
   const { url } = req.body;
-  console.log("and your youtube link is: ", url);
+  // console.log("and your youtube link is: ", url);
   
   rooms.set(roomId, {
     url,
@@ -45,7 +69,7 @@ app.post('/create-room', (req, res) => {
 app.post('/join-room', (req, res) => {
   const { roomId } = req.body;
 
-  console.log("joining room id ",roomId)
+  // console.log("joining room id ",roomId)
 
   
   if (!rooms.has(roomId)) {
@@ -53,8 +77,8 @@ app.post('/join-room', (req, res) => {
   }
   
   const room = rooms.get(roomId);
-  console.log("thank you for joing a roomiD : ", rooms.get(roomId));
-  console.log("with url: : ", room.url);
+  // console.log("thank you for joing a roomiD : ", rooms.get(roomId));
+  // console.log("with url: : ", room.url);
   
   res.json({ roomId, url: room.url });
 });
@@ -65,8 +89,8 @@ io.on('connection', (socket) => {
   socket.on('joinRoom', ({ roomId, url }) => {
     if (!rooms.has(roomId)) return;
 
-    console.log("hi you cliend id is: ",socket.id.slice(0, 4));
-    console.log("and url is: ", url);
+    // console.log("hi you cliend id is: ",socket.id.slice(0, 4));
+    // console.log("and url is: ", url);
 
     currentRoom = roomId;
     socket.join(roomId);
@@ -123,6 +147,8 @@ io.on('connection', (socket) => {
   });
 });
 
-server.listen(PORT, () => {
-  console.log(`Server running on http://localhost:${PORT}`);
+
+const PORT = process.env.PORT || 4000;
+server.listen(PORT, '0.0.0.0', () => {
+  console.log(`Server running on port ${PORT}`);
 });
