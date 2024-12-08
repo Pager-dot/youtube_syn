@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import { API_URL } from './config';
+
 import axios from 'axios';
 
 function LandingPage({ setRoomId, setUrl, navigateToRoom }) {
@@ -14,7 +16,7 @@ function LandingPage({ setRoomId, setUrl, navigateToRoom }) {
         return;
       }
 
-      const response = await axios.post('http://localhost:4000/create-room', {
+      const response = await axios.post(`${API_URL}/create-room`, {
         url: youtubeUrl
       });
 
@@ -35,7 +37,7 @@ function LandingPage({ setRoomId, setUrl, navigateToRoom }) {
         return;
       }
 
-      const response = await axios.post('http://localhost:4000/join-room', {
+      const response = await axios.post(`${API_URL}/join-room`, {
         roomId: inputRoomId
       });
 

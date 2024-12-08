@@ -1,7 +1,14 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
+import { WS_URL } from './config';
+
 import { io } from 'socket.io-client';
 
-const socket = io('http://localhost:4000');
+const socket = io(WS_URL, {
+  transports: ['websocket', 'polling'],
+  reconnection: true,
+  reconnectionAttempts: 5,
+  reconnectionDelay: 1000
+});
 // const SYNC_THRESHOLD = 2;
 
 const getVideoId = (url) => {
@@ -9,6 +16,8 @@ const getVideoId = (url) => {
   const match = url && url.match(regex);
   return match ? match[1] : null;
 };
+
+
 
 function VideoPlayer({ roomId, url }) {
   const [currentTime, setCurrentTime] = useState(0);
