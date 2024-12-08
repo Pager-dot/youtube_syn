@@ -9,7 +9,7 @@ const server = http.createServer(app);
 
 const allowedOrigins = [
   "http://localhost:3000",
-  "https://youtubeSyncc.vercel.app" // You'll update this with your actual Vercel URL
+  "https://youtube-syn.vercel.app/" // You'll update this with your actual Vercel URL
 ];
 
 
