@@ -35,20 +35,12 @@ app.use(cors({
 
 const io = socketIo(server, {
   cors: {
-    origin: function(origin, callback) {
-      if (!origin || allowedOrigins.indexOf(origin) !== -1) {
-        callback(null, true);
-      } else {
-        callback(new Error('Not allowed by CORS'));
-      }
-    },
+    origin: "*", // Allow all origins temporarily
     methods: ["GET", "POST"],
-    credentials: true,
-    transports: ['websocket', 'polling']
-  },
-  pingTimeout: 60000,
-  pingInterval: 25000
+    credentials: true
+  }
 });
+
 
 
 const rooms = new Map();
