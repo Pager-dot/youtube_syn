@@ -16,6 +16,9 @@ function LandingPage({ setRoomId, setUrl, navigateToRoom }) {
         return;
       }
 
+      console.log("API_URL:",API_URL);
+      console.log(`${API_URL}/create-room`,);
+
       const response = await axios.post(`${API_URL}/create-room`, {
         url: youtubeUrl
       });
