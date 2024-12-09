@@ -1,9 +1,9 @@
 import React, { useEffect, useState, useCallback, useRef } from 'react';
-import { WS_URL } from './config';
+import { API_URL } from './config';
 
 import { io } from 'socket.io-client';
 
-const socket = io(WS_URL, {
+const socket = io(API_URL, {
   transports: ['websocket', 'polling'],
   reconnection: true,
   reconnectionAttempts: 5,
