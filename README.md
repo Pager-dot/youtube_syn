@@ -69,6 +69,10 @@ http://localhost:3000
 4. Join the room from the room id.
 5. voila you have succesfully create a websocketing app which let's you share and watch the same youtube video with youu'r  friend.
 
+## Output
+
+![Output](youtube-sync-player\public\Output.mp4)
+
 ## Contributing
 
 Contributions are welcome! Fork the repository, create a new branch, and submit a pull request with your changes. For major changes, please open an issue to discuss before proceeding.
