@@ -67,11 +67,11 @@ http://localhost:3000
 2. Open the web application in your browser.
 3. copy paste the video link then copy the room id
 4. Join the room from the room id.
-5. voila you have succesfully create a websocketing app which let's you share and watch the same youtube video with youu'r  friend.
+5. voila you have succesfully create a websocketing app which let's you share and watch the same youtube video with your friend.
 
 ## Output
 
-![Output](youtube-sync-player\public\Output.mp4)
+<video controls src="youtube-sync-player/public/Output.mp4" title="Output"></video>
 
 ## Contributing
 
