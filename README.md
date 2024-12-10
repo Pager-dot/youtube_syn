@@ -71,7 +71,7 @@ http://localhost:3000
 
 ## Output
 
-<video controls src="youtube-sync-player/public/Output.mp4" title="Output"></video>
+https://github.com/user-attachments/assets/d59bfce8-fdb0-49fd-bff9-34f5116fdc82
 
 ## Contributing
 
