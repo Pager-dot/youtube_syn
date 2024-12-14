@@ -17,7 +17,7 @@ HTML, CSS, JavaScript, ReactJS
 
 ### Backend:
 
-Node.js, Express.js, WebSocket Protocol
+Node.js, Express.js, Socket.io, UUID
 
 ## Prerequisites
 Make sure you have the following installed:
@@ -60,6 +60,8 @@ npm start
 ```cmd 
 http://localhost:3000
 ```
+
+Note: Ensure that you have a separate frontend running on http://localhost:3000. The frontend should connect to the WebSocket server at http://localhost:4000.
 
 ## Usage
 
